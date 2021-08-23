@@ -4,6 +4,10 @@
  * license that can be found in the LICENSE file.
  */
 
+resource "random_id" "random_role_id_suffix" {
+  byte_length = 2
+}
+
 locals {
   velero_role_permissions = [
     "compute.disks.get",
@@ -17,6 +21,12 @@ locals {
     "compute.snapshots.delete",
     "compute.zones.get"
   ]
+  base_role_id = "velero_role"
+  role_id = var.gcp_custom_role_name == "" ? format(
+    "%s_%s",
+    local.base_role_id,
+    random_id.random_role_id_suffix.hex,
+  ) : var.gcp_custom_role_name
 }
 
 resource "google_service_account" "velero" {
@@ -31,7 +41,7 @@ resource "google_service_account_key" "velero" {
 
 resource "google_project_iam_custom_role" "velero_role" {
   project     = var.project
-  role_id     = var.gcp_custom_role_name
+  role_id     = local.role_id
   title       = "Velero Role"
   description = "Custom role to assign to velero sa to allow it to create snapshots"
   permissions = var.workload_identity ? concat(local.velero_role_permissions, ["iam.serviceAccounts.signBlob"]) : local.velero_role_permissions
