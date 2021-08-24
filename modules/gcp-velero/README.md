@@ -5,14 +5,14 @@ to backup Kubernetes objects and trigger volume snapshots.
 
 ## Inputs
 
-| Name                     | Description                                                                   | Type          | Default         | Required |
-|--------------------------|-------------------------------------------------------------------------------|---------------|-----------------|----------|
-| backup\_bucket\_name     | Backup Bucket Name                                                            | `string`      | `n/a`           | yes      |
-| project                  | GCP Project where colocate the bucket                                         | `string`      | `n/a`           | yes      |
-| gcp_service_account_name | Name of the gcp service account to create for velero                          | `string`      | `"velero-sa"`   | yes      |
-| gcp_custom_role_name     | Name of the gcp custom role to assign to the gcp service account              | `string`      | `"velero_role"` | yes      |
-| workload_identity        | Flag to specify if velero should use workload identity instead of credentials | `bool`        | `false`         | yes      |
-| tags                     | Custom tags to apply to resources                                             | `map(string)` | `{}`            | no       |
+| Name                     | Description                                                                   | Type          | Default                                               | Required |
+|--------------------------|-------------------------------------------------------------------------------|---------------|-------------------------------------------------------|----------|
+| backup\_bucket\_name     | Backup Bucket Name                                                            | `string`      | `n/a`                                                 | yes      |
+| project                  | GCP Project where colocate the bucket                                         | `string`      | `n/a`                                                 | yes      |
+| gcp_service_account_name | Name of the gcp service account to create for velero                          | `string`      | `"velero-sa"`                                         | yes      |
+| gcp_custom_role_name     | Name of the gcp custom role to assign to the gcp service account              | `string`      | `creates a random name starting with "velero_role_*"` | yes      |
+| workload_identity        | Flag to specify if velero should use workload identity instead of credentials | `bool`        | `false`                                               | yes      |
+| tags                     | Custom tags to apply to resources                                             | `map(string)` | `{}`                                                  | no       |
 
 
 ## Outputs
