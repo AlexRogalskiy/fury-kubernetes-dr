@@ -1,0 +1,228 @@
+{
+ "components": [
+  {
+   "name": "velero-aws",
+   "resources": [
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "velero",
+     "namespace": "kube-system"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/velero/velero",
+       "upstreamImage": "velero/velero",
+       "version": "v1.6.3"
+      }
+     ],
+     "kind": "Deployment",
+     "name": "velero",
+     "namespace": "kube-system"
+    }
+   ]
+  },
+  {
+   "name": "velero-azure",
+   "resources": [
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "velero",
+     "namespace": "kube-system"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/velero/velero",
+       "upstreamImage": "velero/velero",
+       "version": "v1.6.3"
+      }
+     ],
+     "kind": "Deployment",
+     "name": "velero",
+     "namespace": "kube-system"
+    }
+   ]
+  },
+  {
+   "name": "dashboards",
+   "resources": []
+  },
+  {
+   "name": "velero-base",
+   "resources": [
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "velero",
+     "namespace": "kube-system"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/velero/velero",
+       "upstreamImage": "velero/velero",
+       "version": "v1.6.3"
+      }
+     ],
+     "kind": "Deployment",
+     "name": "velero",
+     "namespace": "kube-system"
+    }
+   ]
+  },
+  {
+   "name": "velero-gcp",
+   "resources": [
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "velero",
+     "namespace": "kube-system"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/velero/velero",
+       "upstreamImage": "velero/velero",
+       "version": "v1.6.3"
+      }
+     ],
+     "kind": "Deployment",
+     "name": "velero",
+     "namespace": "kube-system"
+    }
+   ]
+  },
+  {
+   "name": "velero-on-prem",
+   "resources": [
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "minio",
+     "namespace": "kube-system"
+    },
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "velero",
+     "namespace": "kube-system"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/velero/velero",
+       "upstreamImage": "velero/velero",
+       "version": "v1.6.3"
+      }
+     ],
+     "kind": "Deployment",
+     "name": "velero",
+     "namespace": "kube-system"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/minio",
+       "upstreamImage": "minio",
+       "version": "RELEASE.2021-05-26T00-22-46Z"
+      }
+     ],
+     "kind": "StatefulSet",
+     "name": "minio",
+     "namespace": "kube-system"
+    },
+    {
+     "apiVersion": "batch/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/minio/mc",
+       "upstreamImage": "minio/mc",
+       "version": "RELEASE.2021-05-18T03-39-44Z"
+      }
+     ],
+     "kind": "Job",
+     "name": "minio-setup",
+     "namespace": "kube-system"
+    }
+   ]
+  },
+  {
+   "name": "minio",
+   "resources": [
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "minio",
+     "namespace": "kube-system"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/minio",
+       "upstreamImage": "minio",
+       "version": "RELEASE.2021-05-26T00-22-46Z"
+      }
+     ],
+     "kind": "StatefulSet",
+     "name": "minio",
+     "namespace": "kube-system"
+    },
+    {
+     "apiVersion": "batch/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/minio/mc",
+       "upstreamImage": "minio/mc",
+       "version": "RELEASE.2021-05-18T03-39-44Z"
+      }
+     ],
+     "kind": "Job",
+     "name": "minio-setup",
+     "namespace": "kube-system"
+    }
+   ]
+  },
+  {
+   "name": "velero-restic",
+   "resources": [
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/velero/velero",
+       "upstreamImage": "velero/velero",
+       "version": "v1.6.3"
+      }
+     ],
+     "kind": "DaemonSet",
+     "name": "velero-restic",
+     "namespace": "kube-system"
+    }
+   ]
+  },
+  {
+   "name": "velero-schedules",
+   "resources": []
+  }
+ ],
+ "module": "fury-kubernetes-dr",
+ "version": "1.4.0"
+}
